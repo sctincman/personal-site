@@ -1,3 +1,5 @@
-{:image "thumbnail.svg"
- :theme "SELF"
- :description "Design a personal site for hosting monthly sketches."}
+{:title "Personal Site"
+ :image "thumbnail.svg"
+ :theme "Self"
+ :description "Design a personal site for hosting monthly sketches."
+ :index "THEME.md"}

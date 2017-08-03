@@ -17,6 +17,10 @@
   [directory]
   (let [dir (io/as-file directory)]
     (when (sketch? directory)
-      (edn/read-string (slurp (some #(when (= "props.clj" (.getName %)) %)
-                                    (seq (.listFiles dir))))))))
-
+      (-> (edn/read-string (slurp (some #(when (= "props.clj" (.getName %)) %)
+                                        (seq (.listFiles dir)))))
+          (assoc :path (.getName dir))
+          (update :index (fn [index]
+                           (if (some? index)
+                             index
+                             "index.html")))))))

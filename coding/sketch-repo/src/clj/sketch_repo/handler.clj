@@ -4,17 +4,21 @@
             [compojure.route :refer [not-found resources files]]
             [hiccup.page :refer [include-js include-css html5]]
             [sketch-repo.middleware :refer [wrap-middleware]]
+            [markdown.core :as md]
             [config.core :refer [env]]))
 
 (def sketch-parent "/home/tincman/sketch")
+
+(defn sketch-entry [sketch]
+  )
 
 (defn sketch-list [path]
   [:ul
    (for [sketch (repo/list-sketches path)]
      (let [props (repo/sketch-info sketch)]
        [:li
-        sketch
-        [:img.thumbnail {:src (str "sketches/" (.getName sketch) "/" (get props :image))}]
+        [:a {:href (str "sketches/" (get props :path) "/" (get props :index))} (get props :title)]
+        [:img.thumbnail {:src (str "sketches/" (get props :path) "/" (get props :image))}]
         [:p (get props :theme)]
         [:p (get props :description)]]))])
 
@@ -45,6 +49,9 @@
 (defroutes routes
   (GET "/" [] (loading-page))
   (GET "/about" [] (loading-page))
+  (GET "/sketches/:sketch/:name.md" [sketch name]
+       ;(str sketch " " name)
+       (md/md-to-html-string (slurp (str sketch-parent "/" sketch "/" name ".md"))))
 
   (files "/sketches" {:root sketch-parent})
   (resources "/")
