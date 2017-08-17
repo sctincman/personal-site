@@ -1,35 +1,18 @@
 (ns sketch-repo.handler
   (:require [sketch-repo.sketch :as repo]
-            [compojure.core :refer [GET defroutes]]
+            [compojure.core :refer [GET defroutes context]]
             [compojure.route :refer [not-found resources files]]
             [hiccup.page :refer [include-js include-css html5]]
             [sketch-repo.middleware :refer [wrap-middleware]]
+            [ring.util.response]
             [markdown.core :as md]
-            [config.core :refer [env]]))
+            [config.core :refer [env]]
+            [sketch-repo.views :as view]))
 
-(def sketch-parent "/home/tincman/sketch")
-
-(defn sketch-entry [sketch]
-  )
-
-(defn sketch-list [path]
-  [:ul
-   (for [sketch (repo/list-sketches path)]
-     (let [props (repo/sketch-info sketch)]
-       [:li
-        [:a {:href (str "sketches/" (get props :path) "/" (get props :index))} (get props :title)]
-        [:img.thumbnail {:src (str "sketches/" (get props :path) "/" (get props :image))}]
-        [:p (get props :theme)]
-        [:p (get props :description)]]))])
-
-
-(def mount-target
-  [:div#app
-      [:h3 "ClojureScript has not been compiled!"]
-      [:p "please run "
-       [:b "lein figwheel"]
-       " in order to start the compiler"
-       (sketch-list sketch-parent)]])
+(def sketch-directory
+  (if (some? (env :sketch-directory))
+    (env :sketch-directory)
+    "."))
 
 (defn head []
   [:head
@@ -38,22 +21,33 @@
            :content "width=device-width, initial-scale=1"}]
    (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
 
-(defn loading-page []
+(defn wrap-page [content]
   (html5
-    (head)
-    [:body {:class "body-container"}
-     mount-target
-     (include-js "/js/app.js")]))
+   (head)
+   [:body {:class "body-container"}
+    [:div#app
+     view/nav-bar
+     content
+     [:p.status "ClojureScript has not been compiled! please run " [:b "lein figwheel"] " in order to start the compiler"]]
+    (include-js "/js/app.js")]))
 
 
 (defroutes routes
-  (GET "/" [] (loading-page))
-  (GET "/about" [] (loading-page))
+  (GET "/" [] (wrap-page (view/landing-page)))
+  (GET "/about" [] (wrap-page (view/about-page)))
+  (GET "/sketches" [] (wrap-page (view/sketch-page)))
   (GET "/sketches/:sketch/:name.md" [sketch name]
-       ;(str sketch " " name)
-       (md/md-to-html-string (slurp (str sketch-parent "/" sketch "/" name ".md"))))
+       (md/md-to-html-string (slurp (str sketch-directory "/" sketch "/" name ".md"))))
 
-  (files "/sketches" {:root sketch-parent})
+  (context "/api" []
+           (GET "/sketches" [] (ring.util.response/content-type
+                                (ring.util.response/response (repo/sketches))
+                                "application/json"))
+           (GET "/bah" [] (ring.util.response/content-type
+                           (ring.util.response/response repo/sketch-directory)
+                           "text/plain")))
+
+  (files "/sketches" {:root sketch-directory})
   (resources "/")
   (not-found "Not Found"))
 

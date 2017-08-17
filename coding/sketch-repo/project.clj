@@ -9,7 +9,8 @@
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
                  [ring "1.6.1"]
-                 [ring/ring-defaults "0.3.0"]
+                 [ring/ring-defaults "0.3.1"]
+                 [ring/ring-json "0.4.0"]
                  [compojure "1.6.0"]
                  [hiccup "1.0.5"]
                  [yogthos/config "0.8"]
@@ -18,8 +19,9 @@
                  [secretary "1.2.3"]
                  [venantius/accountant "0.2.0"
                   :exclusions [org.clojure/tools.reader]]
-                 [hickory "0.7.1"]
                  [markdown-clj "0.9.99"]
+                 [org.clojure/data.json "0.2.6"]
+                 [cljs-ajax "0.6.0"]
                  [org.clojure/tools.reader "1.0.0"]]
 
   :plugins [[lein-environ "1.0.2"]

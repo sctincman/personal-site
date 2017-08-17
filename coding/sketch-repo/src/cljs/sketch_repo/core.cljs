@@ -2,47 +2,34 @@
     (:require [reagent.core :as reagent :refer [atom]]
               [secretary.core :as secretary :include-macros true]
               [accountant.core :as accountant]
-              [hickory.core :as hickory]))
-
-;; -------------------------
-;; Views
-
-(defn home-page []
-  [:div [:h2 "Welcome to sketch-repo"]
-   [:div [:a {:href "/about"} "go to about page"]]])
-
-(defn about-page []
-  [:div [:h2 "About sketch-repo"]
-   [:div [:a {:href "/"} "go to the home page"]]])
+              [sketch-repo.views :as view]))
 
 ;; -------------------------
 ;; Routes
 
-(def page (atom #'home-page))
+(def page (atom #'view/landing-page))
 
-(defn current-page [template]
-  (let [fragment (hickory/parse-fragment template)
-        hicfrag (map #(with-meta (hickory/as-hiccup %2) {:key %1})
-                     (range (count fragment))
-                     fragment)]
-    (fn [template]
-      [:div [@page]
-       hicfrag
-       [:p "Reagent HAS been started"]])))
+(defn current-page []
+  [:div
+   view/nav-bar
+   [@page]
+   [:p "Reagent HAS been started"]])
 
 (secretary/defroute "/" []
-  (reset! page #'home-page))
+  (reset! page #'view/landing-page))
 
 (secretary/defroute "/about" []
-  (reset! page #'about-page))
+  (reset! page #'view/about-page))
+
+(secretary/defroute "/sketches" []
+  (reset! page #'view/sketch-page))
 
 ;; -------------------------
 ;; Initialize app
 
 (defn mount-root []
-  (let [mount-point (.getElementById js/document "app")
-        content (.-innerHTML mount-point)]
-    (reagent/render [current-page content] mount-point)))
+  (let [mount-point (.getElementById js/document "app")]
+    (reagent/render [current-page] mount-point)))
 
 (defn init! []
   (accountant/configure-navigation!
