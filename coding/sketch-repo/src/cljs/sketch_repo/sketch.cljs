@@ -39,7 +39,6 @@
 (fetch-sketches)
 
 (defn sketches []
-  (fetch-sketches)
   @sketch-list)
 
 

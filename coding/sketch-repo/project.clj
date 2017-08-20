@@ -22,6 +22,7 @@
                  [markdown-clj "0.9.99"]
                  [org.clojure/data.json "0.2.6"]
                  [cljs-ajax "0.6.0"]
+                 [hawk "0.2.11"]
                  [org.clojure/tools.reader "1.0.0"]]
 
   :plugins [[lein-environ "1.0.2"]

@@ -1,5 +1,6 @@
 (ns sketch-repo.views
-  (:require [sketch-repo.sketch :as repo]))
+  (:require [sketch-repo.sketch :as repo]
+            [sketch-repo.posts :as posts]))
 
 (defn sketch-page []
   [:ul
@@ -14,8 +15,31 @@
 (defn about-page []
   [:h3 "About me!"])
 
+(defn posts-body []
+  [:section.posts
+   (for [post (posts/posts)]
+     ^{:key post}
+     [:section.post
+      (if (contains? post :title)
+        [:h3 (get post :title)]
+        [:h3 (str "Update " (get post :created))])
+      [:header.timeinfo
+       [:p.info
+        "Created on"
+        [:time {:datetime (get post :created)} (get post :created)]]
+       (when (contains? post :edited)
+         [:p.info
+          "Edited on"
+          [:time {:datetime (get post :edited)} (get post :edited)]])]
+      [:p (get post :content)]])])
+
 (defn landing-page []
-  [:h3 "Tincman - Landing"])
+  [:section
+   [:h2 "Tincman"]
+   [:p "This is my personal site."]
+   [:section.updates
+    [:h3 "Updates"]
+    (posts-body)]])
 
 (def nav-bar
   [:header

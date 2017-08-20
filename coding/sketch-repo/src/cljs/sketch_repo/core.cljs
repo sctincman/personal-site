@@ -2,7 +2,9 @@
     (:require [reagent.core :as reagent :refer [atom]]
               [secretary.core :as secretary :include-macros true]
               [accountant.core :as accountant]
-              [sketch-repo.views :as view]))
+              [sketch-repo.views :as view]
+              [sketch-repo.sketch :as repo]
+              [sketch-repo.posts :as posts]))
 
 ;; -------------------------
 ;; Routes
@@ -12,16 +14,18 @@
 (defn current-page []
   [:div
    view/nav-bar
-   [@page]
+   [:div.content [@page]]
    [:p "Reagent HAS been started"]])
 
 (secretary/defroute "/" []
+  (posts/fetch-posts)
   (reset! page #'view/landing-page))
 
 (secretary/defroute "/about" []
   (reset! page #'view/about-page))
 
 (secretary/defroute "/sketches" []
+  (repo/fetch-sketches)
   (reset! page #'view/sketch-page))
 
 ;; -------------------------

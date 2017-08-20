@@ -34,6 +34,7 @@
                              index
                              "index.html")))))))
 
-(defn sketches
-  []
-  (map sketch-info (list-sketches)))
+(def sketch-list (atom (map sketch-info (list-sketches))))
+
+(defn sketches []
+  @sketch-list)

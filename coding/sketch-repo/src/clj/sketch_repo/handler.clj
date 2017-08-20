@@ -1,5 +1,6 @@
 (ns sketch-repo.handler
   (:require [sketch-repo.sketch :as repo]
+            [sketch-repo.posts :as posts]
             [compojure.core :refer [GET defroutes context]]
             [compojure.route :refer [not-found resources files]]
             [hiccup.page :refer [include-js include-css html5]]
@@ -42,6 +43,9 @@
   (context "/api" []
            (GET "/sketches" [] (ring.util.response/content-type
                                 (ring.util.response/response (repo/sketches))
+                                "application/json"))
+           (GET "/posts" [] (ring.util.response/content-type
+                                (ring.util.response/response (posts/posts))
                                 "application/json"))
            (GET "/bah" [] (ring.util.response/content-type
                            (ring.util.response/response repo/sketch-directory)
