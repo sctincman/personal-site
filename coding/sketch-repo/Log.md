@@ -31,3 +31,21 @@ This involved setting up generic REST endpoints in ring/compojure, adding JSON m
 Clojure is really awesome :D
 
 ...I'll need to style the navbar later and actually make it indicate what page you're on...
+
+## 2017-08-20
+
+This was a few days of work that showed up here
+
+### Sketch Page
+
+Horrible performance oversight I found because my laptop was burning through my lap. Server-side, it was reloading the sketches from the filesystem on every request. Coupled with the logic I had was causing the client to spam requests as fast as it could (forgot to add `setTimeout`). Made the `sketch-repo.sketches` read the files on startup and cache the results. Then I fixed the client-side to only request the sketches upon navigation to the page (no need to even poll here... this isn't changing often).
+
+Followig the work on the posts page, I also made this watch the directory and reload the sketches on change.
+
+After finishing a lot of more important things, I took the time to re-layout and re-style the sketches page.
+
+### Posts Page
+
+This followed a lot of the work from the sketches page, but I used JSON instead of EDN, and made it construct a flat-map (so file-structure is lax, you can have single posts or collections of posts in each file).
+
+Filewatchers also will reload the posts on changes to the directory.
