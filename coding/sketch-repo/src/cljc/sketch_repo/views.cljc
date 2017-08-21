@@ -3,14 +3,20 @@
             [sketch-repo.posts :as posts]))
 
 (defn sketch-page []
-  [:ul
-   (for [sketch (repo/sketches)]
-     ^{:key sketch}
-     [:li 
-      [:a {:href (str "sketches/" (get sketch :path) "/" (get sketch :index))} (get sketch :title)]
-      [:img.thumbnail {:src (str "sketches/" (get sketch :path) "/" (get sketch :image))}]
-      [:p (get sketch :theme)]
-      [:p (get sketch :description)]])])
+  [:section.sketches
+   [:ul.sketches
+    (for [sketch (repo/sketches)]
+      ^{:key sketch}
+      [:li.sketch
+       [:figure.thumbnail
+        [:img {:src (str "sketches/" (get sketch :path) "/" (get sketch :image))}]]
+       [:div.details
+        [:h3.sketch-title [:a {:href (str "sketches/" (get sketch :path) "/" (get sketch :index))}
+                         (get sketch :title)]
+         [:span (get sketch :theme)]]
+        [:p (get sketch :description)]
+        [:footer.timeinfo "Added" [:time {:dateTime (get sketch :created)}
+                                   (get sketch :created)]]]])]])
 
 (defn about-page []
   [:h3 "About me!"])
@@ -24,22 +30,19 @@
         [:h3 (get post :title)]
         [:h3 (str "Update " (get post :created))])
       [:header.timeinfo
-       [:p.info
-        "Created on"
-        [:time {:datetime (get post :created)} (get post :created)]]
+       [:span "Created on"
+        [:time {:dateTime (get post :created)} (get post :created)]]
        (when (contains? post :edited)
-         [:p.info
+         [:span
           "Edited on"
-          [:time {:datetime (get post :edited)} (get post :edited)]])]
+          [:time {:dateTime (get post :edited)} (get post :edited)]])]
       [:p (get post :content)]])])
 
 (defn landing-page []
   [:section
    [:h2 "Tincman"]
    [:p "This is my personal site."]
-   [:section.updates
-    [:h3 "Updates"]
-    (posts-body)]])
+   (posts-body)])
 
 (def nav-bar
   [:header
