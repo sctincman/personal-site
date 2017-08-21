@@ -29,7 +29,8 @@
 (defn- get-post
   [path]
   (when (post? path)
-    (let [post (json/read-str (slurp path))]
+    (let [post (json/read-str (slurp path)
+                              :key-fn keyword)]
       (cond
         (vector? post) post
         (map? post) [post]
