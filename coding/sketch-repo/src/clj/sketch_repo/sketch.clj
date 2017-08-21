@@ -1,6 +1,7 @@
 (ns sketch-repo.sketch
   (:require [clojure.java.io :as io]
             [clojure.tools.reader.edn :as edn]
+            [hawk.core :as hawk]
             [config.core :refer [env]]))
 
 (def sketch-directory
@@ -34,7 +35,15 @@
                              index
                              "index.html")))))))
 
-(def sketch-list (atom (map sketch-info (list-sketches))))
+(def sketch-list (atom (reverse (sort-by :created (map sketch-info (list-sketches))))))
+
+(hawk/watch! [{:paths [sketch-directory]
+               :handler (fn [ctx e]
+                          (reset! sketch-list
+                                 (reverse
+                                  (sort-by :created
+                                           (map sketch-info (list-sketches)))))
+                          ctx)}])
 
 (defn sketches []
   @sketch-list)
