@@ -9,7 +9,7 @@
 ;; -------------------------
 ;; Routes
 
-(def page (atom #'view/landing-page))
+(defonce page (atom #'view/landing-page))
 
 (defn current-page []
   [:div

@@ -47,10 +47,11 @@
            (GET "/posts" [] (ring.util.response/content-type
                                 (ring.util.response/response (posts/posts))
                                 "application/json"))
-           (GET "/bah" [] (ring.util.response/content-type
-                           (ring.util.response/response repo/sketch-directory)
-                           "text/plain")))
+           (when (env :dev)
+             (GET "/cp" [] (map (fn [x] (.toString x))
+                                (seq (.getURLs (java.lang.ClassLoader/getSystemClassLoader)))))))
 
+  (files "/assets" {:root (str posts/posts-directory "/assets")})
   (files "/sketches" {:root sketch-directory})
   (resources "/")
   (not-found "Not Found"))
