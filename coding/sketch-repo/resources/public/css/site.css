@@ -1,0 +1,129 @@
+.body-container {
+  font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.125em;
+  color: #333;
+  line-height: 1.5em;
+}
+
+h1, h2, h3 { color: #000; }
+h1 { font-size: 2.5em }
+h2 { font-size: 2em }
+h3 { font-size: 1.5em }
+
+a {
+  text-decoration: none;
+  color: #09f;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+header { width: 100%; }
+
+header > nav {
+    background-color: #333;
+    text-align: center;
+    display: flex;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0em 0em;
+    margin: 0em auto;
+    width: 50%;
+}
+
+nav li { margin: 0.5em auto; }
+
+nav a {
+    color: rgba(255,255,255,0.70);
+    font-weight: bold;
+}
+
+nav a:hover { color: rgba(255,255,255,0.85); }
+
+.content {
+    margin: 0em auto;
+    width: 60%;
+}
+
+.content > * {
+    text-align: center;
+}
+
+.posts { text-align: left; }
+.post h3 { margin: 0.5em 0; }
+
+.post {
+    padding: 0.5em 0;
+}
+
+.timeinfo {
+    font-size: 0.8em;
+    color: rgba(0,0,0,0.60);
+}
+.timeinfo time { margin: 0 .5em;}
+.timeinfo { display: flex; }
+
+.thumbnail,
+.thumbnail > img {
+    width: 100px;
+    height: 100%;
+}
+
+.sketch-title {
+    display: flex;
+    width 100%;
+}
+.sketch-title > a { margin-right: auto; }
+.sketch-title > span { marging-left: auto; }
+
+
+ul.sketches {
+    text-align: left;
+    padding: 0;
+    list-style: none;
+}
+
+li.sketch {
+    display: flex;
+    padding: 0.5em 0;
+}
+
+li.sketch > div.details { width: 100%;}
+
+.profile p { text-align: left; }
+
+.h-card ul.urls {
+    list-style: none;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.h-card ul.urls > li {
+    margin: 0.5em auto;
+    min-width: 20%;
+}
+
+.urls a {
+    color: rgba(0,0,0,0.80);
+    font-weight: bold;
+}
+
+.urls a:hover { color: rgba(0,0,0,0.60); }
+
+.h-resume ul {
+    margin: 0.5em auto;
+    text-align: left;
+}
+
+section {
+    margin: 1em auto;
+}
+
+i { margin: auto 0.4em; }

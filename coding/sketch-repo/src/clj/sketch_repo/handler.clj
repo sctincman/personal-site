@@ -20,7 +20,10 @@
    [:meta {:charset "utf-8"}]
    [:meta {:name "viewport"
            :content "width=device-width, initial-scale=1"}]
-   (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
+   (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))
+   (include-css (if (env :dev)
+                  "/font-awesome-4.7.0/css/font-awesome.css"
+                  "/font-awesome-4.7.0/css/font-awesome.min.css"))])
 
 (defn wrap-page [content]
   (html5

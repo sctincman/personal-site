@@ -20,37 +20,51 @@
 
 (defn h-card []
   [:section.h-card
-   [:a.u-url {:rel "me"
-              :href "https://zincfox.red"}
-    [:div.scrim-top
-     [:h2 [:span.p-name [:span.p-given-name "Jonathan"] " "
-           [:span.p-family-name "Tinkham"]]
-      ": "
-      [:span.p-nickname "(Tincman)"]]
-     [:img.u-photo {:src "assets/about/profile.jpg"
-                    :alt "Photo of Jonathan Tinkham"
-                    :style {:width "100%"}}]]]
-   [:p [:span.p-job-title "Software Engineer I"] " at "
+   [:div.scrim-top
+    [:img.u-photo {:src "assets/about/profile.jpg"
+                   :alt "Photo of Jonathan Tinkham"
+                   :style {:width "100%"}}]
+    [:h2.urls
+     [:a.u-url {:rel "me"
+                :href "https://zincfox.red"}
+      [:span.p-name [:span.p-given-name "Jonathan"] " "
+       [:span.p-family-name "Tinkham"]] " "
+      [:span.p-nickname "(Tincman)"]]]]
+   [:h4 [:span.p-job-title "Software Engineer I"] " at "
     [:span.p-org "FICO"]]
    [:ul.urls
     [:li [:a.u-email {:href "mailto:jonathan.tinkham@gmail.com"}
-    "Main: jonathan.tinkham@gmail.com"]]
+          [:i {:class "fa fa-envelope-o"
+               :aria-hidden true}]
+          "Main: jonathan.tinkham@gmail.com"]]
     [:li [:a.u-email {:href "mailto:sctincman@gmail.com"}
-    "Devel sctincman@gmail.com"]]
+          [:i {:class "fa fa-envelope-o"
+               :aria-hidden true}]
+          "Devel: sctincman@gmail.com"]]
     [:li [:a.u-url {:href "https://twitter.com/sctincman"
                      :rel "me"}
+          [:i {:class "fa fa-twitter"
+               :aria-hidden true}]
           "Twitter"]]
     [:li [:a.u-url {:href "https://github.com/sctincman"
                      :rel "me"}
+          [:i {:class "fa fa-github"
+               :aria-hidden true}]
           "Github"]]
     [:li [:a.u-url {:href "https://google.com/+JonathanTinkhams/about"
                      :rel "me"}
+          [:i {:class "fa fa-google"
+               :aria-hidden true}]
           "Google"]]
     [:li [:a.u-url {:href "https://facebook.com/jonathan.scott.tinkham/about"
-                     :rel "me"}
+                    :rel "me"}
+          [:i {:class "fa fa-facebook"
+               :aria-hidden true}]
           "Facebook"]]
     [:li [:a.u-url {:href "https://www.linkedin.com/in/jonathantinkham"
-                     :rel "me"}
+                    :rel "me"}
+          [:i {:class "fa fa-linkedin"
+               :aria-hidden true}]
           "LinkedIn"]]]])
 
 (defn profile []
@@ -145,10 +159,10 @@
      [:time.dt-end "Present"]
      [:p.p-summary "Software Engineer I"]
      [:address {:class "p-location h-card"}
-       [:p
-        [:span.p-name "FICO"] ": "
-        [:span.p-locality "Denver"] ", "
-        [:span.p-region "CO"]]]
+      [:p
+       [:span.p-name "FICO"] ": "
+       [:span.p-locality "Denver"] ", "
+       [:span.p-region "CO"]]]
      [:div.p-description
       [:p "Integrated Zeppelin into Analytics Workbench, a big-data analytics and machine learning suite."]
       [:ul
