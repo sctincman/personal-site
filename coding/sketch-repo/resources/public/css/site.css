@@ -11,6 +11,7 @@ h1, h2, h3 { color: #000; }
 h1 { font-size: 2.5em }
 h2 { font-size: 2em }
 h3 { font-size: 1.5em }
+h4, h5, h6 { margin: 0.5em auto }
 
 a {
   text-decoration: none;
@@ -32,6 +33,7 @@ header > nav {
 nav ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     padding: 0em 0em;
     margin: 0em auto;
     width: 50%;
@@ -51,11 +53,6 @@ nav a:hover { color: rgba(255,255,255,0.85); }
     width: 60%;
 }
 
-.content > * {
-    text-align: center;
-}
-
-.posts { text-align: left; }
 .post h3 { margin: 0.5em 0; }
 
 .post {
@@ -84,7 +81,6 @@ nav a:hover { color: rgba(255,255,255,0.85); }
 
 
 ul.sketches {
-    text-align: left;
     padding: 0;
     list-style: none;
 }
@@ -95,8 +91,6 @@ li.sketch {
 }
 
 li.sketch > div.details { width: 100%;}
-
-.profile p { text-align: left; }
 
 .h-card ul.urls {
     list-style: none;
@@ -110,20 +104,46 @@ li.sketch > div.details { width: 100%;}
     min-width: 20%;
 }
 
-.urls a {
+.card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card > * {
+    width: 45%;
+    margin: 0 auto;
+}
+
+a {
     color: rgba(0,0,0,0.80);
     font-weight: bold;
 }
 
-.urls a:hover { color: rgba(0,0,0,0.60); }
+a:hover { color: rgba(0,0,0,0.60); }
 
 .h-resume ul {
     margin: 0.5em auto;
-    text-align: left;
 }
 
 section {
-    margin: 1em auto;
+    padding: 1em auto 1em 0.5em;
+    margin: 1em 0;
 }
 
 i { margin: auto 0.4em; }
+
+.h-event address {
+    display: inline;
+    font-style: normal;
+}
+.h-event .tagline {
+    margin: 0.5em auto;
+    font-weight: normal;
+}
+.h-event .tagline > * { margin: 0 0.5em 0 0;}
+.h-event .tagline > em { font-weight: bold;}
+
+time.dt-start::before { content: "(" }
+time.dt-end::after { content: ")" }
+
+section { background-color: rgba(117, 190, 218, 0.5); }

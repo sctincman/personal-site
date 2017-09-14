@@ -19,53 +19,47 @@
                                    (get sketch :created)]]]])]])
 
 (defn h-card []
-  [:section.h-card
-   [:div.scrim-top
+  [:section.h-card.card
+   [:figure
     [:img.u-photo {:src "assets/about/profile.jpg"
                    :alt "Photo of Jonathan Tinkham"
-                   :style {:width "100%"}}]
-    [:h2.urls
+                   :style {:width "100%"}}]]
+   [:div
+    [:h2
      [:a.u-url {:rel "me"
                 :href "https://zincfox.red"}
       [:span.p-name [:span.p-given-name "Jonathan"] " "
        [:span.p-family-name "Tinkham"]] " "
-      [:span.p-nickname "(Tincman)"]]]]
-   [:h4 [:span.p-job-title "Software Engineer I"] " at "
-    [:span.p-org "FICO"]]
-   [:ul.urls
-    [:li [:a.u-email {:href "mailto:jonathan.tinkham@gmail.com"}
-          [:i {:class "fa fa-envelope-o"
-               :aria-hidden true}]
-          "Main: jonathan.tinkham@gmail.com"]]
-    [:li [:a.u-email {:href "mailto:sctincman@gmail.com"}
-          [:i {:class "fa fa-envelope-o"
-               :aria-hidden true}]
-          "Devel: sctincman@gmail.com"]]
-    [:li [:a.u-url {:href "https://twitter.com/sctincman"
+      [:span.p-nickname "(Tincman)"]]]
+    [:h4 [:span.p-job-title "Software Engineer I"] " at "
+     [:span.p-org "FICO"]]
+    [:ul.urls
+     [:li [:a.u-email {:href "mailto:jonathan.tinkham@gmail.com"}
+           [:i.fa.fa-envelope-o {:aria-hidden true}]
+           "Main: jonathan.tinkham@gmail.com"]]
+     [:li [:a.u-email {:href "mailto:sctincman@gmail.com"}
+           [:i.fa.fa-envelope-o {:aria-hidden true}]
+           "Devel: sctincman@gmail.com"]]
+     [:li [:a.u-url {:href "https://twitter.com/sctincman"
                      :rel "me"}
-          [:i {:class "fa fa-twitter"
-               :aria-hidden true}]
-          "Twitter"]]
-    [:li [:a.u-url {:href "https://github.com/sctincman"
+           [:i.fa.fa-twitter {:aria-hidden true}]
+           "Twitter"]]
+     [:li [:a.u-url {:href "https://github.com/sctincman"
                      :rel "me"}
-          [:i {:class "fa fa-github"
-               :aria-hidden true}]
-          "Github"]]
-    [:li [:a.u-url {:href "https://google.com/+JonathanTinkhams/about"
+           [:i.fa.fa-github {:aria-hidden true}]
+           "Github"]]
+     [:li [:a.u-url {:href "https://google.com/+JonathanTinkhams/about"
                      :rel "me"}
-          [:i {:class "fa fa-google"
-               :aria-hidden true}]
-          "Google"]]
-    [:li [:a.u-url {:href "https://facebook.com/jonathan.scott.tinkham/about"
-                    :rel "me"}
-          [:i {:class "fa fa-facebook"
-               :aria-hidden true}]
-          "Facebook"]]
-    [:li [:a.u-url {:href "https://www.linkedin.com/in/jonathantinkham"
-                    :rel "me"}
-          [:i {:class "fa fa-linkedin"
-               :aria-hidden true}]
-          "LinkedIn"]]]])
+           [:i.fa.fa-google {:aria-hidden true}]
+           "Google"]]
+     [:li [:a.u-url {:href "https://facebook.com/jonathan.scott.tinkham/about"
+                     :rel "me"}
+           [:i.fa.fa-facebook {:aria-hidden true}]
+           "Facebook"]]
+     [:li [:a.u-url {:href "https://www.linkedin.com/in/jonathantinkham"
+                     :rel "me"}
+           [:i.fa.fa-linkedin {:aria-hidden true}]
+           "LinkedIn"]]]]])
 
 (defn profile []
   [:section.profile
@@ -89,20 +83,16 @@
 (defn h-resume []
   [:section.h-resume
    [:h2.p-name
-    [:a {:class "p-contact h-card"
-         :href "https://zincfox.red/about"}
+    [:a.p-contact.h-card {:href "https://zincfox.red/about"}
      "Jonathan Tinkham"]
     " Curriculum Vitae"]
 
-   [:section.p-summary
-    [:p "Former computational chemist turned software engineer. Polyglot with experience in systems and full-stack development. Avid Linux user and overall computer and electronics enthusiast."]]
-   
-   [:section {:class "p-affiliation h-card"}
-    [:p
-     [:span.p-title "Software Engineer I"] " at "
-     [:span.p-name "FICO"] " in "
-     [:span.p-locality "Denver"] ", "
-     [:span.p-region "CO"]]]
+   [:p "Former computational chemist turned software engineer. Polyglot with experience in systems and full-stack development. Avid Linux user and overall computer and electronics enthusiast."]
+   [:p
+    [:span.p-title "Software Engineer I"] " at "
+    [:span.p-name "FICO"] " in "
+    [:span.p-locality "Denver"] ", "
+    [:span.p-region "CO"]]
 
    [:section
     [:h3 "Skills"]
@@ -154,15 +144,16 @@
    
    [:section
     [:h3 "Experience"]
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2016-10-28"} "Oct 2016"] "--"
-     [:time.dt-end "Present"]
-     [:p.p-summary "Software Engineer I"]
-     [:address {:class "p-location h-card"}
-      [:p
-       [:span.p-name "FICO"] ": "
-       [:span.p-locality "Denver"] ", "
-       [:span.p-region "CO"]]]
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Software Engineer I"]
+      [:address.p-location.h-card
+       [:span "at "]
+       [:span.p-name "FICO"] ", "
+       [:span.p-locality "Denver"] " "
+       [:span.p-region "CO"]]
+      [:time.dt-start {:dateTime "2016-10-28"} "Oct 2016"] [:span "to"]
+      [:time.dt-end "Present"]]
      [:div.p-description
       [:p "Integrated Zeppelin into Analytics Workbench, a big-data analytics and machine learning suite."]
       [:ul
@@ -170,15 +161,16 @@
        [:li "Worked with a large remote team from across the globe."]
        [:li "Received SPOT award for work during initial release."]]]]
     
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2015-02-01"} "Feb 2015"] "--"
-     [:time.dt-end   {:dateTime "2016-10-26"} "Oct 2016"]
-     [:p.p-summary "Postdoctoral Chemistry Researcher"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Postdoctoral Chemistry Researcher"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "Colorado School of Mines"] " "
        [:span.p-locality "Golden"] ", "
-       [:span.p-region "CO"]]]
+       [:span.p-region "CO"]]
+      [:time.dt-start {:dateTime "2015-02-01"} "Feb 2015"] [:span "to"]
+      [:time.dt-end   {:dateTime "2016-10-26"} "Oct 2016"]]
      [:div.p-description
       [:p "Designed, synthesized, and characterized novel organic/polymer/hybrid semi-conductors for application in thin film-based photovoltaics."]
       [:ul
@@ -187,15 +179,16 @@
        [:li "Published articles in peer-reviewed journals."]
        [:li "Peer-reviewed papers for publication."]]]]
     
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2009-08-26"} "Aug 2009"] "--"
-     [:time.dt-end   {:dateTime "2015-02-01"} "Feb 2015"]
-     [:p.p-summary "Graduate Research Fellow and Teaching Assistant"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Graduate Research Fellow and Teaching Assistant"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "University of Massachusetts Amherst"] " "
        [:span.p-locality "Amherst"] ", "
-       [:span.p-region "MA"]]]
+       [:span.p-region "MA"]]
+      [:time.dt-start {:dateTime "2009-08-26"} "Aug 2009"] [:span "to"]
+      [:time.dt-end   {:dateTime "2015-02-01"} "Feb 2015"]]
      [:div.p-description
       [:p "PHaSE Energy Frontier Research Center funded research assistant under Professor Lahti. Performed research to design and synthesize new conjugated polymers for applications in organic photovoltaic devices and applications."]
       [:ul
@@ -204,79 +197,85 @@
        [:li "Performed Density-Functional Theory based computations to predict properties of new materials and model behavior of existing ones."]
        [:li "Supervised multiple laboratory sections of organic chemistry course--teaching good organic laboratory practices, along with grading lab reports, and supervising exams for corresponding course."]]]]
     
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2009-06-01"} "Jun 2009"] "--"
-     [:time.dt-end   {:dateTime "2009-08-01"} "Aug 2009"]
-     [:p.p-summary "Consultant"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Consultant"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "Innovations in Optics"] " "
        [:span.p-locality "Woburn"] ", "
-       [:span.p-region "MA"]]]
+       [:span.p-region "MA"]]
+      [:time.dt-start {:dateTime "2009-06-01"} "Jun 2009"] [:span "to"]
+      [:time.dt-end   {:dateTime "2009-08-01"} "Aug 2009"]]
      [:p.p-description "Debug, implement, and expand accelerated lifetime testing setup."]]
     
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2008-06-01"} "Jun 2008"] "--"
-     [:time.dt-end   {:dateTime "2008-08-01"} "Aug 2008"]
-     [:p.p-summary "Intern"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Intern"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "Innovations in Optics"] " "
        [:span.p-locality "Woburn"] ", "
-       [:span.p-region "MA"]]]
+       [:span.p-region "MA"]]
+      [:time.dt-start {:dateTime "2008-06-01"} "Jun 2008"] [:span "to"]
+      [:time.dt-end   {:dateTime "2008-08-01"} "Aug 2008"]]
      [:div.p-description
       [:p "One of two interns tasked to design and implement an automated accelerated lifetime testing system for LED devices."]
       [:ul
        [:li "Gained experience in circuit design, optics, and LabView programming."]]]]
 
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2008-09-01"} "Sep 2008"] "--"
-     [:time.dt-end   {:dateTime "2008-12-15"} "Dec 2008"]
-     [:p.p-summary "Teaching Assistant"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Teaching Assistant"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "University of Vermont"] " "
        [:span.p-locality "Burlington"] ", "
-       [:span.p-region "VT"]]]
+       [:span.p-region "VT"]]
+      [:time.dt-start {:dateTime "2008-09-01"} "Sep 2008"] [:span "to"]
+      [:time.dt-end   {:dateTime "2008-12-15"} "Dec 2008"]]
      [:div.p-description
       [:p "General Chemistry laboratory teaching assistant. Supervised laboratory portion of course--teaching basic laboratory practices, grading lab reports, and supervising and grading exams for lecture section."]]]
 
-    [:section {:class "p-experience h-event"}
-     [:time.dt-start {:dateTime "2006-09-01"} "Sep 2006"] "--"
-     [:time.dt-end   {:dateTime "2006-12-15"} "Dec 2006"]
-     [:p.p-summary "Teaching Assistant"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-experience.h-event
+     [:h4.tagline
+      [:em.p-summary "Teaching Assistant"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "University of Vermont"] " "
        [:span.p-locality "Burlington"] ", "
-       [:span.p-region "VT"]]]
+       [:span.p-region "VT"]]
+      [:time.dt-start {:dateTime "2006-09-01"} "Sep 2006"] [:span "to"]
+      [:time.dt-end   {:dateTime "2006-12-15"} "Dec 2006"]]
      [:div.p-description
       [:p "Introductory Computer Science teaching lab assistant. As a sophomore, I supervised the laboratory portion of course--aiding students with problems and grading weekly assignments."]]]]
 
    [:section
     [:h3 "Education"]
-    [:section {:class "p-education h-event"}
-     [:time.dt-start {:dateTime "2009-08-26"} "Aug 2009"] "--"
-     [:time.dt-end   {:dateTime "2015-02-01"} "Feb 2015"]
-     [:p.p-summary "Ph.D. in Chemistry"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-education.h-event
+     [:h4.tagline
+      [:em.p-summary "Ph.D. in Chemistry"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "University of Massachusetts Amherst"] " "
        [:span.p-locality "Amherst"] ", "
-       [:span.p-region "MA"]]]
+       [:span.p-region "MA"]]
+      [:time.dt-start {:dateTime "2009-08-26"} "Aug 2009"] [:span "to"]
+      [:time.dt-end   {:dateTime "2015-02-01"} "Feb 2015"]]
      [:div.p-description
       [:p "Advised by Professor Paul M. Lahti."]
       [:p "Thesis: Design, Synthesis, and Application of Dithienylpyrrole-based Polymers in Organic Electronic Materials."]]]
     
-    [:section {:class "p-education h-event"}
-     [:time.dt-start {:dateTime "2005-08-28"} "Aug 2005"] "--"
-     [:time.dt-end   {:dateTime "2009-05-20"} "May 2009"]
-     [:p.p-summary "B.S. in Chemistry"]
-     [:address {:class "p-location h-card"}
-      [:p
+    [:section.p-education.h-event
+     [:h4.tagline
+      [:em.p-summary "B.S. in Chemistry"]
+      [:address.p-location.h-card
+       [:span "at "]
        [:span.p-name "University of Vermont"] " "
        [:span.p-locality "Burlington"] ", "
-       [:span.p-region "VT"]]]
+       [:span.p-region "VT"]]
+      [:time.dt-start {:dateTime "2005-08-28"} "Aug 2005"] [:span "to"]
+      [:time.dt-end   {:dateTime "2009-05-20"} "May 2009"]]
      [:div.p-description
       [:p "ACS Certified Chemistry Program."]
       [:ul
