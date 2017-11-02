@@ -20,6 +20,7 @@
                  [venantius/accountant "0.2.0"
                   :exclusions [org.clojure/tools.reader]]
                  [markdown-clj "0.9.99"]
+                 [hickory "0.7.1"]
                  [org.clojure/data.json "0.2.6"]
                  [cljs-ajax "0.6.0"]
                  [hawk "0.2.11"]
